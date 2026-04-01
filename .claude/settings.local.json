@@ -1,0 +1,11 @@
+{
+  "disabledMcpjsonServers": [
+    "stream-director"
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git remote:*)"
+    ]
+  }
+}
