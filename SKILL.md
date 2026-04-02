@@ -44,12 +44,26 @@ Find and display previously generated Mermaid stateDiagram blocks from `.md` fil
 
 1. Use Grep to find all files containing `stateDiagram-v2` in the project directory
 2. Read each file and extract the mermaid code blocks
-3. Run the viewer script:
+3. Determine the output format. If the user specifies a format, use it; otherwise default to `html`.
+4. Run the viewer script:
 
 ```bash
-python "<skill-dir>/scripts/viewer.py" <file1.md> <file2.md> ...
+python "<skill-dir>/scripts/viewer.py" --format <html|md|pdf> [--output <path>] <file1.md> <file2.md> ...
 ```
 
-4. If no diagrams are found, inform the user
+### Supported formats
+
+| Format | Description |
+|--------|-------------|
+| `html` | (default) Renders diagrams with mermaid.js and opens in browser |
+| `md`   | Generates a consolidated Markdown file with all mermaid code blocks |
+| `pdf`  | Generates PDF via headless Chromium (Edge/Chrome). Falls back to HTML if no browser found |
+
+### Options
+
+- `--format html|md|pdf` — Output format (default: `html`)
+- `--output <path>` / `-o <path>` — Custom output file path (default: auto-generated in temp dir)
+
+5. If no diagrams are found, inform the user
 
 If Python is unavailable, output the mermaid code blocks directly in the terminal with file paths.
