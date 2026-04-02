@@ -77,7 +77,12 @@ def main():
         sys.exit(1)
 
     diagrams = []
+    seen = set()
     for filepath in sys.argv[1:]:
+        real = os.path.realpath(filepath)
+        if real in seen:
+            continue
+        seen.add(real)
         for title, code in extract_mermaid_blocks(filepath):
             diagrams.append((title, code, filepath))
 
